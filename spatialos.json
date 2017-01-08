@@ -1,0 +1,8 @@
+{
+    "name": "alpha_cat_stairway_92",
+    "project_version": "0.0.2",
+    "sdk_version": "9.0.2",
+    "dependencies": [
+		{"name": "WorkerSdkSchema", "version": "9.0.2"}
+    ]
+}
