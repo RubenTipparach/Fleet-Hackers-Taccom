@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetHackersTaccom-Android", "FleetHackersTaccom-Android.csproj", "{7ECDD4C0-54F0-8B93-D9EF-FA5DB9C8A8BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetHackersTaccom-Android.Editor", "FleetHackersTaccom-Android.Editor.csproj", "{5D197127-744C-8E8F-45C6-D00B506A6510}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7ECDD4C0-54F0-8B93-D9EF-FA5DB9C8A8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ECDD4C0-54F0-8B93-D9EF-FA5DB9C8A8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ECDD4C0-54F0-8B93-D9EF-FA5DB9C8A8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ECDD4C0-54F0-8B93-D9EF-FA5DB9C8A8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D197127-744C-8E8F-45C6-D00B506A6510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D197127-744C-8E8F-45C6-D00B506A6510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D197127-744C-8E8F-45C6-D00B506A6510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D197127-744C-8E8F-45C6-D00B506A6510}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
