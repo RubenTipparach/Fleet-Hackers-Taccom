@@ -75,6 +75,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\ShipBehavior\BasicShip.cs" />
+    <Compile Include="Assets\Scripts\ShipBehavior\SpaceObject.cs" />
+    <Compile Include="Assets\Scripts\UI\DragSelection.cs" />
+    <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Scripts\SgtDebrisRandomVelocity.cs" />
     <Compile Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Scripts\SgtDebugMesh.cs" />
     <Compile Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Scripts\SgtDepthTextureMode.cs" />
