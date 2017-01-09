@@ -133,6 +133,7 @@
     <Compile Include="Assets\Space Graphics Toolkit\Editor\SgtExtractShadowmap.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Shaders\SgtTerrainColor.shader" />
     <None Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Shaders\SgtTerrainDebug.shader" />
     <None Include="Assets\Space Graphics Toolkit\Shaders\Resources\SgtAccretion.shader" />

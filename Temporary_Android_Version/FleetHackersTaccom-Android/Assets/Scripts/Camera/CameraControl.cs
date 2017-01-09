@@ -38,17 +38,18 @@ public class CameraControl : MonoBehaviour, IDragHandler
 		if(Input.GetMouseButton(2))//middle mouse
 		{
 			//Camera.main.transform.Translate(eventData.delta * Time.deltaTime);
-			pivotLocation += new Vector3(-eventData.delta.x,0, -eventData.delta.y) * Time.deltaTime *(panningToScrollFactor *scrollDistance);
+			pivotLocation += new Vector3(-eventData.delta.x, 0, -eventData.delta.y) * Time.deltaTime *(panningToScrollFactor *scrollDistance);
         }
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		gamePlane = new Plane(Vector3.up, 0);
 
 		float hitDis = 0;
 		Ray r = Camera.main.ViewportPointToRay(Vector3.zero);
-		if (gamePlane.Raycast(Camera.main.ViewportPointToRay(Vector3.zero),
+		if (gamePlane.Raycast(r,
 			out hitDis))
 		{
 			distanceFromPlane = hitDis;
@@ -93,7 +94,7 @@ public class CameraControl : MonoBehaviour, IDragHandler
 	private Vector3 CalculateCameraPosition()
 	{
 		var rotationalOffset = Camera.main.transform.rotation * (Vector3.back * distanceFromPlane);
-        Debug.DrawLine(pivotLocation, rotationalOffset);
+        //Debug.DrawLine(transform.position, pivotLocation);
 		return pivotLocation + rotationalOffset; //yoffset goes here.
     }
 }

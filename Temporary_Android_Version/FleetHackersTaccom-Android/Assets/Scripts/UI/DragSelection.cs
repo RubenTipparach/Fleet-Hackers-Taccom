@@ -24,6 +24,17 @@ public class DragSelection : MonoBehaviour,
 	Vector2 rectPosition;
 	Vector2 rectSize;
 
+	/// <summary>
+	/// Sealing this reference so hard. Use this to operate on the set of ships.
+	/// </summary>
+	public IEnumerable<BasicShip> SelectedShips
+	{
+		get
+		{
+			return selectedShips;
+		}
+	}
+
 	List<BasicShip> selectedShips;
 
 	SpaceObject obj;
@@ -58,7 +69,6 @@ public class DragSelection : MonoBehaviour,
 		selectionBox.sizeDelta = new Vector2(Mathf.Abs(rectSize.x), Mathf.Abs(rectSize.y));
 
 		//find and select all game objects.
-		GameObject[] gobs = GameObject.FindGameObjectsWithTag("Ship");
 		Rect selectionRect = GetSelectionRect(rectPosition, rectPosition + rectSize);
         selectedShips.Clear();
 
@@ -74,7 +84,7 @@ public class DragSelection : MonoBehaviour,
 			}
 		});
 
-		Debug.Log(rectPosition);
+		//Debug.Log(rectPosition);
 		//Debug.Log(rectSize);
 	}
 
@@ -101,7 +111,7 @@ public class DragSelection : MonoBehaviour,
 
 		foreach (var gb in selectedShips)
 		{
-			Debug.Log("Selected: " + gb.gameObject.name);
+			//Debug.Log("Selected: " + gb.gameObject.name);
 			gb.HealthBar.gameObject.SetActive(true);
 		}
 	}
@@ -114,7 +124,7 @@ public class DragSelection : MonoBehaviour,
 
         DragSelection.ForEachAndAllShips((BasicShip ship) =>
 		{
-			Debug.Log(ship.gameObject.name +" selected");
+			//Debug.Log(ship.gameObject.name +" selected");
 			//.... all ship info should be contained here for convenience,
 			GameObject gb = GameObject.Instantiate(healtBarPrefab);
 			gb.transform.SetParent(canvas.transform);

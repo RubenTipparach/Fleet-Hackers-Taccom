@@ -19,10 +19,50 @@ public class BasicShip : MonoBehaviour {
 
 	public float currentHealth = 100;
 
+	[SerializeField]
+	int groupId;
+
+	[SerializeField]
+	float deltaThresholdToStop = .05f;
+
+	[SerializeField]
+	Shipclass shipClass;
+
+	float delta = 0;
+
+	Vector3 lastPosition;
+
 	public HealthBar HealthBar
 	{
 		get;
 		set;
+	}
+
+	public int GetGroupId
+	{
+		get
+		{
+			return groupId;
+		}
+	}
+
+	public Shipclass ShipClass
+	{
+		get
+		{
+			return shipClass;
+		}
+	}
+
+	/// <summary>
+	/// Quick operation to help with rotational stuff, and also to help with formations.
+	/// </summary>
+	public Quaternion LookAtTarget
+	{
+		get
+		{
+			return Quaternion.LookRotation(target - transform.position);
+		}
 	}
 
 	// Use this for initialization
@@ -37,16 +77,43 @@ public class BasicShip : MonoBehaviour {
 
 		if (movingToTarget)
 		{
-			transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target), rotationSpeed * Time.deltaTime);
-		}
 
+			lastPosition = transform.position;
+
+            transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+			transform.rotation = Quaternion.Slerp(
+				transform.rotation, 
+				this.LookAtTarget,
+				rotationSpeed * Time.deltaTime);
+
+			Debug.DrawLine(transform.position, target, Color.green);
+			
+			delta = Vector3.Distance(lastPosition, transform.position);
+
+			// Slick movement stop criteria. Works like a charm!
+			if(deltaThresholdToStop > delta)
+			{
+				movingToTarget = false;
+			}
+        }
 
 	}
 
 	public void MoveShip(Vector3 destination)
 	{
 		target = destination;
+		lastPosition = Vector3.zero;
+		movingToTarget = true;
+    }
+
+	public enum Shipclass
+	{
+		Fighter,
+		BattleFrigate,
+		TroopTransport,
+		Barge,
+		ScienceVessel,
+		UtilityShip
 	}
 
 }

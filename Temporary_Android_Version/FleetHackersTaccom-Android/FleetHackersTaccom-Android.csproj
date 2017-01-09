@@ -77,9 +77,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\ShipBehavior\BasicShip.cs" />
+    <Compile Include="Assets\Scripts\ShipBehavior\BasicWeapon.cs" />
     <Compile Include="Assets\Scripts\ShipBehavior\SpaceObject.cs" />
     <Compile Include="Assets\Scripts\UI\DragSelection.cs" />
     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\UI\IssueOrders.cs" />
     <Compile Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Scripts\SgtDebrisRandomVelocity.cs" />
     <Compile Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Scripts\SgtDebugMesh.cs" />
     <Compile Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Scripts\SgtDepthTextureMode.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Assets\Space Graphics Toolkit\Scripts\SgtWrappedStarfield.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
     <None Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Shaders\SgtTerrainColor.shader" />
     <None Include="Assets\Space Graphics Toolkit\Examples\Basic Pack\Shaders\SgtTerrainDebug.shader" />
     <None Include="Assets\Space Graphics Toolkit\Shaders\Resources\SgtAccretion.shader" />
