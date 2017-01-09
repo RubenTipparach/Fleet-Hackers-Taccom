@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public class BasicShip : MonoBehaviour {
 
 	Vector3 target;
@@ -31,6 +32,15 @@ public class BasicShip : MonoBehaviour {
 	float delta = 0;
 
 	Vector3 lastPosition;
+
+	
+
+	[SerializeField]
+	float smooth;
+
+	float velocity;
+
+	float currentSpeed;
 
 	public HealthBar HealthBar
 	{
@@ -79,22 +89,40 @@ public class BasicShip : MonoBehaviour {
 		{
 
 			lastPosition = transform.position;
+			Quaternion targetAngle = this.LookAtTarget;
+			float angularDist = Quaternion.Angle(transform.rotation, targetAngle) ;// (Quaternion.Angle(transform.rotation, targetAngle) - 90 )/180;
 
-            transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
-			transform.rotation = Quaternion.Slerp(
-				transform.rotation, 
-				this.LookAtTarget,
+			float arrivalDist = Vector3.Distance(transform.position, target);
+
+			//Debug.Log(angularDist);
+			if (angularDist < 10 || arrivalDist < GetComponent<SphereCollider>().radius * 2)
+			{
+				transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+				currentSpeed = 0;
+
+
+				// These two things go together!
+				delta = Vector3.Distance(lastPosition, transform.position);
+
+				// Slick movement stop criteria. Works like a charm!
+				if (deltaThresholdToStop > delta)
+				{
+					movingToTarget = false;
+				}
+			}
+			else
+			{
+				//Debug.Log("cur speed " + currentSpeed);
+				currentSpeed = Mathf.SmoothDamp(currentSpeed, moveSpeed, ref velocity, smooth);
+				transform.transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime, Space.Self);
+			}
+            transform.rotation = Quaternion.Lerp(
+				transform.rotation,
+				targetAngle,
 				rotationSpeed * Time.deltaTime);
 
 			Debug.DrawLine(transform.position, target, Color.green);
 			
-			delta = Vector3.Distance(lastPosition, transform.position);
-
-			// Slick movement stop criteria. Works like a charm!
-			if(deltaThresholdToStop > delta)
-			{
-				movingToTarget = false;
-			}
         }
 
 	}
