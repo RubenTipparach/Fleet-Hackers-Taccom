@@ -22,6 +22,9 @@ ModelImporter:
     100028: Cylinder003
     100030: Line001
     100032: ScienceVessel
+    100034: Box010
+    100036: Cylinder004
+    100038: UtilityShip
     400000: Box001
     400002: Box002
     400004: Box003
@@ -39,6 +42,9 @@ ModelImporter:
     400028: Cylinder003
     400030: Line001
     400032: ScienceVessel
+    400034: Box010
+    400036: Cylinder004
+    400038: UtilityShip
     2300000: Box001
     2300002: Box002
     2300004: Box003
@@ -53,6 +59,8 @@ ModelImporter:
     2300022: Cylinder002
     2300024: Cylinder003
     2300026: Line001
+    2300028: Box010
+    2300030: Cylinder004
     3300000: Box001
     3300002: Box002
     3300004: Box003
@@ -67,6 +75,8 @@ ModelImporter:
     3300022: Cylinder002
     3300024: Cylinder003
     3300026: Line001
+    3300028: Box010
+    3300030: Cylinder004
     4300000: Box001
     4300002: Box002
     4300004: Box003
@@ -81,6 +91,8 @@ ModelImporter:
     4300022: Box009
     4300024: Line001
     4300026: Cylinder002
+    4300028: Cylinder004
+    4300030: Box010
     9500000: //RootNode
   materials:
     importMaterials: 1

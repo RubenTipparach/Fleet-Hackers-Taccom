@@ -33,8 +33,6 @@ public class BasicShip : MonoBehaviour {
 
 	Vector3 lastPosition;
 
-	
-
 	[SerializeField]
 	float smooth;
 
@@ -42,6 +40,11 @@ public class BasicShip : MonoBehaviour {
 
 	float currentSpeed;
 
+	public Vector2 CurrentGridPositionInt
+	{
+		get;
+		set;
+	}
 	public HealthBar HealthBar
 	{
 		get;
@@ -64,6 +67,21 @@ public class BasicShip : MonoBehaviour {
 		}
 	}
 
+	private GridManager _gridManagerInstance;
+
+	// always be int!
+	public Vector2 GridPosition
+	{
+		get;
+		set;
+	}
+		
+	public bool Initialized
+	{
+		get;
+		private set;
+	}
+
 	/// <summary>
 	/// Quick operation to help with rotational stuff, and also to help with formations.
 	/// </summary>
@@ -77,8 +95,15 @@ public class BasicShip : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		currentHealth = startingHealth;	
-	}
+		currentHealth = startingHealth;
+
+		Initialized = false;
+
+		_gridManagerInstance = GameObject.Find("FH_RTS_MANAGER").GetComponent<GridManager>();
+        transform.position = _gridManagerInstance.PlaceOnGrid(this, transform.position);
+
+		Initialized = true;
+    }
 
 	// Update is called once per frame
 	void Update() {
@@ -100,7 +125,6 @@ public class BasicShip : MonoBehaviour {
 				transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
 				currentSpeed = 0;
 
-
 				// These two things go together!
 				delta = Vector3.Distance(lastPosition, transform.position);
 
@@ -108,7 +132,8 @@ public class BasicShip : MonoBehaviour {
 				if (deltaThresholdToStop > delta)
 				{
 					movingToTarget = false;
-				}
+					transform.position = target;
+                }
 			}
 			else
 			{
@@ -116,6 +141,7 @@ public class BasicShip : MonoBehaviour {
 				currentSpeed = Mathf.SmoothDamp(currentSpeed, moveSpeed, ref velocity, smooth);
 				transform.transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime, Space.Self);
 			}
+
             transform.rotation = Quaternion.Lerp(
 				transform.rotation,
 				targetAngle,
@@ -129,7 +155,7 @@ public class BasicShip : MonoBehaviour {
 
 	public void MoveShip(Vector3 destination)
 	{
-		target = destination;
+		target = _gridManagerInstance.PlaceOnGrid(this, destination);
 		lastPosition = Vector3.zero;
 		movingToTarget = true;
     }

@@ -76,9 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\Effects\ProjectileBehavior.cs" />
     <Compile Include="Assets\Scripts\ShipBehavior\BasicShip.cs" />
     <Compile Include="Assets\Scripts\ShipBehavior\BasicWeapon.cs" />
     <Compile Include="Assets\Scripts\ShipBehavior\SpaceObject.cs" />
+    <Compile Include="Assets\Scripts\Simulation\GridManager.cs" />
+    <Compile Include="Assets\Scripts\Simulation\TeamManager.cs" />
     <Compile Include="Assets\Scripts\UI\DragSelection.cs" />
     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
     <Compile Include="Assets\Scripts\UI\IssueOrders.cs" />
