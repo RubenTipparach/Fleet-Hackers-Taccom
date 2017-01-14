@@ -89,7 +89,14 @@ public class CameraControl : MonoBehaviour, IDragHandler
 		}
 
 		Camera.main.transform.position = CalculateCameraPosition();
-	}
+
+        //keyboard controls because my tablet doesnt have middle mouse
+        //if (Input.GetKey(KeyCode.LeftShift))
+        {
+            //Camera.main.transform.Translate(eventData.delta * Time.deltaTime);
+            pivotLocation += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * Time.deltaTime * (panningToScrollFactor *10 * scrollDistance);
+        }
+    }
 
 	private Vector3 CalculateCameraPosition()
 	{

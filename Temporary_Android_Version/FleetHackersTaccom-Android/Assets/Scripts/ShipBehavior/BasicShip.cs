@@ -51,13 +51,19 @@ public class BasicShip : MonoBehaviour {
 		set;
 	}
 
-	public int GetGroupId
+	public int GroupId
 	{
 		get
 		{
 			return groupId;
 		}
 	}
+
+    public TeamStance TeamDatabase
+    {
+        get;
+        set;
+    }
 
 	public Shipclass ShipClass
 	{
