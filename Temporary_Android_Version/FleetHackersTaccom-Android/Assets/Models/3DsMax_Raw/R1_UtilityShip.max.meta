@@ -13,10 +13,13 @@ ModelImporter:
     400004: //RootNode
     2300000: Box010
     2300002: Cylinder004
+    2300004: //RootNode
     3300000: Box010
     3300002: Cylinder004
+    3300004: //RootNode
     4300000: Cylinder004
     4300002: Box010
+    4300004: UtilityShip
     9500000: //RootNode
   materials:
     importMaterials: 1
