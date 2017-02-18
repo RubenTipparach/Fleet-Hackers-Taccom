@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BasicWeapon : MonoBehaviour {
 
+    [SerializeField]
+    Transform projectile;
+
+    [SerializeField]
+    Transform spawnPoint;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +17,9 @@ public class BasicWeapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+	    if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(projectile, spawnPoint.position, spawnPoint.rotation);
+        }	
 	}
 }

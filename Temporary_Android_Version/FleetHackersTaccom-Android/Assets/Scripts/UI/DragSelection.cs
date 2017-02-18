@@ -41,6 +41,11 @@ public class DragSelection : MonoBehaviour,
 
 	List<HealthBar> healthBars;
 
+
+    /// <summary>
+    /// Drag select spaceships.
+    /// </summary>
+    /// <param name="eventData"></param>
 	public void OnDrag(PointerEventData eventData)
 	{
 
@@ -104,7 +109,7 @@ public class DragSelection : MonoBehaviour,
 		selectionBox.gameObject.SetActive(false);
 
 		//clear everything. might optimize later, but I don't expect more than 1000 ship at once so whatever.
-		DragSelection.ForEachAndAllShips((BasicShip ship) =>
+		ForEachAndAllShips((BasicShip ship) =>
 		{
 			ship.HealthBar.gameObject.SetActive(false);
 		});
@@ -122,7 +127,7 @@ public class DragSelection : MonoBehaviour,
 		selectedShips = new List<BasicShip>();
 		healthBars = new List<HealthBar>();
 
-        DragSelection.ForEachAndAllShips((BasicShip ship) =>
+        ForEachAndAllShips((BasicShip ship) =>
 		{
 			//Debug.Log(ship.gameObject.name +" selected");
 			//.... all ship info should be contained here for convenience,
