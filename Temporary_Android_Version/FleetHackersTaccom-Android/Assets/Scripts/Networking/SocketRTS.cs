@@ -10,6 +10,8 @@ public class SocketRTS : MonoBehaviour {
     [SerializeField]
     SocketIOComponent socket;
 
+    [SerializeField]
+    Transform testSpawn;
 
     // Use this for initialization
     void Start () {
@@ -22,12 +24,19 @@ public class SocketRTS : MonoBehaviour {
 
     private void SpawnShip(SocketIOEvent se)
     {
+        Debug.Log("ship spawn ordered " + se.data.Print());
+
         //obj.data
+        var spawnData = SIMessage.FromJSO<SpawnData>(se.data.Print());
+        Debug.Log("ship spawned " + spawnData.ToString());
+
+        Instantiate(testSpawn, 
+            new Vector3(spawnData.position.x, 0, spawnData.position.y), Quaternion.identity);
     }
 
     void OnConnect(SocketIOEvent se)
     {
-        Debug.Log("client connected to server.");
+        Debug.Log("client connected to server." + se.data.str);
     }
 
 
@@ -65,3 +74,20 @@ public class RTSServer
     public string serverId;
 }
 
+[Serializable]
+public class SpawnData
+{
+    public position position;
+
+    public override string ToString()
+    {
+        return "pos x: " + position.x + " y: " + position.y;
+    }
+}
+
+[Serializable]
+public class position
+{
+    public float x;
+    public float y;
+}
