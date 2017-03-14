@@ -40,6 +40,8 @@ public class BasicShip : MonoBehaviour {
 
 	float currentSpeed;
 
+    public string ShipId;
+
 	public Vector2 CurrentGridPositionInt
 	{
 		get;

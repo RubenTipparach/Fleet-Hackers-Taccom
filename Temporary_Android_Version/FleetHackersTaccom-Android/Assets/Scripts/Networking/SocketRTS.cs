@@ -13,6 +13,9 @@ public class SocketRTS : MonoBehaviour {
     [SerializeField]
     Transform testSpawn;
 
+    [SerializeField]
+    List<BasicShip> trackedShips;
+
     // Use this for initialization
     void Start () {
         socket.On("intialize", OnConnect);
@@ -78,6 +81,8 @@ public class RTSServer
 public class SpawnData
 {
     public position position;
+
+    public string shipId;
 
     public override string ToString()
     {
