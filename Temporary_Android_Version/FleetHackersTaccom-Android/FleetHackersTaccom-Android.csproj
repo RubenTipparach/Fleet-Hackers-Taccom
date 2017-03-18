@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Effects\ProjectileBehavior.cs" />
+    <Compile Include="Assets\Scripts\Networking\BasicNetworkShip.cs" />
     <Compile Include="Assets\Scripts\Networking\SocketRTS.cs" />
     <Compile Include="Assets\Scripts\Projectiles\BasicProjectile.cs" />
     <Compile Include="Assets\Scripts\ShipBehavior\BasicShip.cs" />
