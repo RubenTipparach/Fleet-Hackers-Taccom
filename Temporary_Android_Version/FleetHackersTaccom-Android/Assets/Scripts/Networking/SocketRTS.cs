@@ -33,8 +33,12 @@ public class SocketRTS : MonoBehaviour {
         var spawnData = SIMessage.FromJSO<SpawnData>(se.data.Print());
         Debug.Log("ship spawned " + spawnData.ToString());
 
-        Instantiate(testSpawn, 
-            new Vector3(spawnData.position.x, 0, spawnData.position.y), Quaternion.identity);
+        GameObject ship = Instantiate(testSpawn, 
+            new Vector3(spawnData.position.x, 0, spawnData.position.y), Quaternion.identity).gameObject;
+
+        var netShip = ship.GetComponent<BasicNetworkShip>();
+        netShip.shipId = spawnData.shipId;
+        netShip.socket = this.socket;
     }
 
     void OnConnect(SocketIOEvent se)

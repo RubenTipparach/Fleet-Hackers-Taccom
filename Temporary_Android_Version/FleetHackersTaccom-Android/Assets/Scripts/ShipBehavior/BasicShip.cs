@@ -107,7 +107,11 @@ public class BasicShip : MonoBehaviour {
 
 		Initialized = false;
 
-		_gridManagerInstance = GameObject.Find("FH_RTS_MANAGER").GetComponent<GridManager>();
+		_gridManagerInstance = GameObject.FindGameObjectWithTag("GridManager").GetComponent<GridManager>();
+
+        var dragSelection = GameObject.FindGameObjectWithTag("CameraController").GetComponent<DragSelection>();
+        dragSelection.RegisterShip(this);
+
         transform.position = _gridManagerInstance.PlaceOnGrid(this, transform.position);
 
 		Initialized = true;

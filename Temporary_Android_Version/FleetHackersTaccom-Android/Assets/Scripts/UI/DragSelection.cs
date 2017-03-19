@@ -24,10 +24,12 @@ public class DragSelection : MonoBehaviour,
 	Vector2 rectPosition;
 	Vector2 rectSize;
 
-	/// <summary>
-	/// Sealing this reference so hard. Use this to operate on the set of ships.
-	/// </summary>
-	public IEnumerable<BasicShip> SelectedShips
+    public List<GameObject> registeredShips;
+
+    /// <summary>
+    /// Sealing this reference so hard. Use this to operate on the set of ships.
+    /// </summary>
+    public IEnumerable<BasicShip> SelectedShips
 	{
 		get
 		{
@@ -77,7 +79,7 @@ public class DragSelection : MonoBehaviour,
 		Rect selectionRect = GetSelectionRect(rectPosition, rectPosition + rectSize);
         selectedShips.Clear();
 
-		DragSelection.ForEachAndAllShips((BasicShip ship) =>
+		ForEachAndAllShips((BasicShip ship) =>
 		{
 			Vector2 screenPos = Camera.main.WorldToScreenPoint(ship.transform.position);
 			screenPos.y = Screen.height - screenPos.y;// invert y lols
@@ -121,11 +123,17 @@ public class DragSelection : MonoBehaviour,
 		}
 	}
 
-	// Use this for initialization
-	void Start()
+    private void Awake()
+    {
+        registeredShips = new List<GameObject>();
+        healthBars = new List<HealthBar>();
+
+    }
+
+    // Use this for initialization
+    void Start()
 	{
 		selectedShips = new List<BasicShip>();
-		healthBars = new List<HealthBar>();
 
         ForEachAndAllShips((BasicShip ship) =>
 		{
@@ -146,6 +154,26 @@ public class DragSelection : MonoBehaviour,
 		});
 	}
 
+    public void RegisterShip(BasicShip ship)
+    {
+        registeredShips.Add(ship.gameObject);
+
+        //Debug.Log(ship.gameObject.name +" selected");
+        //.... all ship info should be contained here for convenience,
+        GameObject gb = GameObject.Instantiate(healtBarPrefab);
+        gb.transform.SetParent(canvas.transform);
+
+        var healthBar = gb.GetComponent<HealthBar>();
+        healthBar.SetInitVal(ship.currentHealth);
+        healthBar.ship = ship;
+
+        healthBars.Add(healthBar);
+        gb.SetActive(false);
+
+        // fuck yes, set the data of a ship to that ship.
+        ship.HealthBar = healthBar;
+    }
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -156,10 +184,10 @@ public class DragSelection : MonoBehaviour,
 	}
 
 	// helper methods!
-	public static void ForEachAndAllShips(Action<BasicShip> action)
+	public void ForEachAndAllShips(Action<BasicShip> action)
 	{
-		GameObject[] gobs = GameObject.FindGameObjectsWithTag("Ship");
-		foreach (var gb in gobs)
+		//GameObject[] gobs = GameObject.FindGameObjectsWithTag("Ship");
+		foreach (var gb in registeredShips)
 		{
 			var getBasicShip = gb.GetComponent<BasicShip>();
 			if (getBasicShip != null)
